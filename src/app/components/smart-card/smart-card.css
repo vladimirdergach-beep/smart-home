@@ -1,0 +1,58 @@
+:host {
+	display: block;
+	height: 100%;
+}
+
+.device-card {
+	height: 100%;
+	padding: 24px;
+
+	background-color: #1e293b;
+	border: 1px solid #334155;
+	border-radius: 12px;
+}
+
+h2 {
+	margin: 0 0 24px;
+
+	font-size: 20px;
+	color: #f8fafc;
+}
+
+.device-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+button {
+	width: 44px;
+	height: 44px;
+	padding: 0;
+
+	color: #ffffff;
+	background-color: #0a38c5;
+	border: none;
+	border-radius: 8px;
+
+	font-size: 22px;
+	cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+	background-color: #1d4ed8;
+}
+
+button:disabled {
+	color: #64748b;
+	background-color: #1e1f23;
+
+	cursor: not-allowed;
+}
+
+.device-value {
+	font-size: 24px;
+	font-weight: 700;
+	color: #f8fafc;
+}

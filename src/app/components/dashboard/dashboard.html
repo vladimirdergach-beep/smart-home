@@ -1,0 +1,49 @@
+<main class="dashboard">
+	<header class="dashboard-header">
+		<h1>Smart Home</h1>
+
+		<button class="power-button" type="button" (click)="smartHome.togglePower()">
+			{{ smartHome.powerOn() ? 'Выключить дом' : 'Включить дом' }}
+		</button>
+	</header>
+
+	<section class="status-grid">
+		<article class="status-card">
+			<span class="status-label">Питание</span>
+
+			<strong> {{ smartHome.powerOn() ? 'Включено' : 'Выключено' }} </strong>
+		</article>
+
+		<article class="status-card">
+			<span class="status-label">Статус</span>
+
+			<strong>{{ smartHome.homeStatus() }}</strong>
+		</article>
+
+		<article class="status-card">
+			<span class="status-label">Потребление</span>
+
+			<strong>{{ smartHome.sumConsumption() }} Вт</strong>
+		</article>
+
+		<app-eco-toggle [(enabled)]="smartHome.ecoMode" />
+	</section>
+
+	@if (smartHome.volumeWarning() !== '') {
+	<p class="warning">{{ smartHome.volumeWarning() }}</p>
+	}
+
+	<section class="devices-grid">
+		@for (device of smartHome.devices(); track device.id) {
+		<app-smart-card
+			[config]="device"
+			[value]="smartHome.getDevice(device.type)"
+			[disabled]="
+					!smartHome.powerOn() ||
+					(smartHome.ecoMode() && device.type !== 'audio')
+				"
+			(valueChanged)="smartHome.updater(device.type, $event)"
+		/>
+		}
+	</section>
+</main>
