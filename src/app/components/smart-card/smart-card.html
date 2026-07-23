@@ -1,0 +1,15 @@
+<article class="device-card">
+	<h2>{{ config().name }}</h2>
+
+	<div class="device-controls">
+		<button type="button" [disabled]="disabled() || value() <= config().minValue" (click)="changeValue(-1)">
+			−
+		</button>
+
+		<span class="device-value"> {{ value() }} {{ config().unit }} </span>
+
+		<button type="button" [disabled]="disabled() || value() >= config().maxValue" (click)="changeValue(1)">
+			+
+		</button>
+	</div>
+</article>
